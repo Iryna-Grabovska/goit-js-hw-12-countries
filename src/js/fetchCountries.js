@@ -10,7 +10,7 @@ export default class NewsApiService{
   //const url ='https://restcountries.eu/rest/v2/name/${this.searchQuery}?fullText=true'
     return fetch(url)
       .then(response =>
-               console.log(response).json())
+               response.json())
      .then(data => {
        this.incrementPage()
               return data.countries;
