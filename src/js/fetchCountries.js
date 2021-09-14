@@ -1,18 +1,32 @@
-const refs = {
-  searchForm: document.querySelector('.js-search-form'),
-  articlesContainer: document.querySelector('.js-articles'),
-}
+export default class NewsApiService{
 
-refs.searchForm.addEventListener('input', onSearch)
-console.log(onSearch)
-function onSearch(e) {
-  e.preventDeault();
-  const searchQuery = e.currentTarget.elements.query.value;
-  const url = 'https://restcountries.eu/rest/${searchQuery}'
-  //let params = '/v2/${searchQuery}';
-  
-  fetch(url, options)
-    .then(response => response.json())
-    .then(console.log);
-    
+  constructor() {
+    this.searchQuery = '';
+    this.page = 1;
+}
+  fetchCountries() {
+  console.log(this)
+  const url = 'https://restcountries.eu/rest/v2/name/${this.searchQuery}?fields=name;capital;population;languages;flag';
+  //const url ='https://restcountries.eu/rest/v2/name/${this.searchQuery}?fullText=true'
+    return fetch(url)
+      .then(response =>
+               console.log(response).json())
+     .then(data => {
+       this.incrementPage()
+              return data.countries;
+
+        });
+  }
+  incrementPage() {
+    this.page = 1;
+  }
+  resetPage() {
+    this.page = 1;
+  }
+  get query() {
+    return this.searchQuery;
+  }
+  set query(newQuery) {
+    this.searchQuery = newQuery;
+  }
 }
