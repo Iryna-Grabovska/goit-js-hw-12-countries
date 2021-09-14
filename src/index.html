@@ -14,14 +14,21 @@
 
   </head>
   <body>
-    <div class="container">
+    <form action="" class="js-search-form">
+      <div class="form-group">
+    <label for="searchQuery" class="sr-olnly">
       <h1>
         Search countries
       </h1>
-      <input type="text" name="search" id="input-search" />
+      <input type="text" name="query" id="searchQuery"
+      placeholder="enter country" />
       <div class="result"></div>
+    </label>
     </div>
+</form>
+<ul class="articles js-articles">
 
+</ul>
      <script src="./index.js"></script>
   </body>
 </html>
