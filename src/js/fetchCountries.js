@@ -6,8 +6,7 @@ export default class NewsApiService{
 }
   fetchCountries() {
   console.log(this)
-  const url = 'https://restcountries.eu/rest/v2/name/${this.searchQuery}?fields=name;capital;population;languages;flag';
-  //const url ='https://restcountries.eu/rest/v2/name/${this.searchQuery}?fullText=true'
+  const url = 'https://restcountries.eu/rest/v2/name/${this.searchQuery}';
     return fetch(url)
       .then(response =>
                response.json())
