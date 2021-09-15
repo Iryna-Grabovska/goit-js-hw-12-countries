@@ -1,3 +1,3 @@
 import './styles.css';
 import './js/fetchCountries';
-import './js/coutries';
+import './js/countries';

@@ -1,3 +1,23 @@
 h1 {
   font-size: 22px;
 }
+h2 {
+  margin-left: 10px;
+  font-size: 17px;
+  color: rgb(37, 87, 37);
+}
+ul {
+  list-style: none;
+}
+p {
+}
+.input-country {
+  margin-left: 10px;
+  border-width: 2px;
+}
+span {
+  font-weight: bold;
+}
+.countries-flag {
+  margin: 15px;
+}
