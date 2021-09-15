@@ -2,7 +2,8 @@
 import countriesTpl from "../templates/countries.hbs";
 // import NewsApiService from "./fetchCountries";
 import fetchCountries from './fetchCountries'
-import  debounce  from "lodash.debounce";
+import debounce from "lodash.debounce";
+import { error } from '@pnotify/core';
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
   articlesContainer: document.querySelector('.js-articles'),
@@ -19,6 +20,7 @@ const refs = {
  refs.searchForm.addEventListener('input', debounce(onSearch, 500));
 function onSearch(e) {
   const searchQuery = e.target.value;
+  error
   fetchCountries(searchQuery).then(appendCountriesMarkup);
 }
 function appendCountriesMarkup(countries) {
