@@ -3,26 +3,25 @@ import countriesTpl from "../templates/countries.hbs";
 // import NewsApiService from "./fetchCountries";
 import fetchCountries from './fetchCountries'
 import debounce from "lodash.debounce";
-import { error } from '@pnotify/core';
-const refs = {
-  searchForm: document.querySelector('.js-search-form'),
-  articlesContainer: document.querySelector('.js-articles'),
-}
-// const newsApiServise = new NewsApiService();
-// refs.searchForm.addEventListener('input', debounce(onSearch, 500));
+import { error }  from '@pnotify/core';
+import getRefs from './refs'
 
-// function onSearch(e) {
-
-//    newsApiServise.query = e.currentTarget;
-//   newsApiServise.resetPage();
-//   newsApiServise.fetchCountries().then(appendCountriesMarkup);
-// }
- refs.searchForm.addEventListener('input', debounce(onSearch, 500));
+const refs = getRefs();
+refs.searchForm.addEventListener('input', debounce(onSearch, 500));
+ 
 function onSearch(e) {
   const searchQuery = e.target.value;
-  error
-  fetchCountries(searchQuery).then(appendCountriesMarkup);
+  // const form = e.currentTarget;
+  // const searchQuery = form.input.query.value;
+  // refs.articlesContainer.innerHTML = '';
+  fetchCountries(searchQuery).then(appendCountriesMarkup).catch(searchError).finally(()=>searchQuery.reset());
 }
+
+function searchError( error ) {
+   error({ text: 'Too many matches found.Please enter a more specific query!' });
+
+}
+
 function appendCountriesMarkup(countries) {
   refs.articlesContainer.insertAdjacentHTML('beforeend', countriesTpl(countries))
 }
